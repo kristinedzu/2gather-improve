@@ -425,6 +425,7 @@ h7 {
 
 .specific-event-button {
   margin: 0 auto;
+  margin-left: 1.2em;
 }
 
 .back-selected{
@@ -1415,6 +1416,7 @@ h3 {
 .rm {
   border-color: var(--red);
   color: var(--red);
+  margin-left: 1.2em;
 }
 
 
@@ -1431,8 +1433,12 @@ h3 {
   background-color: #067354;
   top: 180px;
   padding: 5px 10px;
-  
   right: 20px;
+  width: 80px;
+  color: white;
+  margin-left: 255px;
+  margin-bottom: -20px;
+  
 }
 
 #select-event > article .friends_icons {
@@ -1486,10 +1492,22 @@ h3 {
 .ticket-text {
   padding: 0 0 0 10px;
   margin-right: 0px;
+  height: auto;
  }
+
+ .ticket_text {
+width: 70%;
+ }
+
 #calendar-container>a article .ticket-text {
  border-left: #0A9C77 solid 25px;
+ height: 100px;
 }
+
+#calendar-container>a article .ticket_text {
+  width: 100%;
+ }
+
 .QR {
   content:url("../img/Qr.png");
   width: 80px;

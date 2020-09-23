@@ -129,7 +129,7 @@ async function appendFavEvents(favEventIds = []) {
                 htmlTemplate += `
          <a href="#select-event" onclick="appendEventsDetails('${event.id}')"><article>
           <div class="ticket-text">
-          <div style="float: left">
+          <div class="ticket_text" style="float: left">
           <h4>${event.name}</h4>
           <h5>${moment(event.date.toDate()).calendar()}</h5>
           <p>${event.place}</p>
