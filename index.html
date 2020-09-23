@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>2GATHER</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Find your perfect event in Aarhus, no mater what you're interested in!">
+  <meta name="author" content="Kris, Daniel, Ola, Magda">
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+  <link rel="stylesheet" href="https://use.typekit.net/hfm1aui.css">
+  <script src="https://kit.fontawesome.com/1e6b508437.js" crossorigin="anonymous"></script>
+</head>
+
+
+
+<body onhashchange="pageChange()">
+  <!------------------ tabbar navigation ----------------------->
+  <nav id="tabbar" class="tabbar hide">
+    <a href="#home"><i class="fas fa-home"></i></a>
+    <a href="#search"><i class="fas fa-search"></i></a>
+    <a href="#tickets"><i class="fas fa-ticket-alt"></i></a>
+    <a href="#calendar"><i class="fas fa-calendar-day"></i></a>
+    <a href="#userprofile"><i class="fas fa-user-circle"></i></a>
+  </nav>
+
+  <!---------------------- PREFERENCES --------------------->
+  <section id="preferences" class="page page2">
+    <div class="preferences_heading">
+      <h2>What interests you?</h2>
+      <p>Select the categories you like!</p>
+      <button type="button" name="button" class="get_started" onclick="goHome()">GET STARTED</button>
+    </div>
+    <div id="preferences_categories-container">
+      <button class="icon1 opacity" id="category1" onclick="onClickActive()"><i
+          class="cat_icon fas fa-music"></i>Music</button>
+      <button class="icon2 opacity" id="category2" onclick="onClickActive2()"><i
+          class="cat_icon fas fa-glass-cheers"></i>Party</button>
+      <button class="icon3 opacity" id="category3" onclick="onClickActive3()"><i
+          class="cat_icon fas fa-running"></i>Sport</button>
+      <button class="icon4 opacity" id="category4" onclick="onClickActive4()"><i
+          class="cat_icon fas fa-palette"></i>Art</button>
+      <button class="icon5 opacity" id="category5" onclick="onClickActive5()"><i
+          class="cat_icon fas fa-gamepad"></i>Games</button>
+      <button class="icon6 opacity" id="category6" onclick="onClickActive6()"><i
+          class="cat_icon fas fa-utensils"></i>Food</button>
+      <button class="icon7 opacity" id="category7" onclick="onClickActive7()"><i
+          class="cat_icon fas fa-lightbulb"></i>Technology</button>
+      <button class="icon8 opacity" id="category8" onclick="onClickActive8()"><i
+          class="cat_icon fas fa-theater-masks"></i>Culture</button>
+      <button class="icon9 opacity" id="category9" onclick="onClickActive9()"><i
+          class="cat_icon fas fa-graduation-cap"></i>Education</button>
+      <button class="icon10 opacity" id="category10" onclick="onClickActive10()"><i
+          class="cat_icon fas fa-book"></i>Literature</button>
+      <button class="icon11 opacity" id="category11" onclick="onClickActive11()"><i
+          class="cat_icon fas fa-shopping-cart"></i>Shopping</button>
+      <button class="icon12 opacity" id="category12" onclick="onClickActive12()"><i
+          class="cat_icon fas fa-archway"></i>Sightseeing</button>
+      <button class="icon13 opacity" id="category13" onclick="onClickActive13()"><i
+          class="cat_icon fas fa-video"></i>Movies</button>
+      <button class="icon14 opacity" id="category14" onclick="onClickActive14()"><i
+          class="cat_icon fas fa-seedling"></i>Environment</button>
+    </div>
+    <div id="preferences-container"></div>
+  </section>
+
+
+  <!-- pages -->
+  <!---------------------- HOME PAGE --------------->
+  <section id="home" class="page page1">
+    <header class="topbar">
+      <h2 id="hello"></h2>
+      <p>These are the newest Events<br>you may be interested in:</p>
+      <nav class="nav">
+        <a href="#" class="nav-item is-active" active-color="black" onclick="orderByUpcoming()">UPCOMING</a>
+        <a href="#" class="nav-item" active-color="black" onclick="loadLocations()">NEAREST</a>
+        <a href="#" class="nav-item" active-color="black" onclick="orderByFriends()">FRIENDS</a>
+        <span class="nav-indicator"></span>
+      </nav>
+    </header>
+    <div id="event-container" class="grid-container"></div>
+  </section>
+
+
+
+  <!-------------------------- SEARCH PAGE -------------------------->
+  <section id="search" class="page">
+    <div class="search_heading">
+      <h2>Events categories</h2>
+    </div>
+    <input id="searchbar" type="search" placeholder="Search" onkeyup="search(this.value)">
+    <button onclick="closeFilteredCategories()" id="closeCatBut"></button>
+    <div id="searched_fileterd_events"></div>
+    <div id="filtered-events" class="grid-container"></div>
+    <div id="categories-container">
+      <button class="icon1" onclick="openMusic(value)"><i class="cat_icon fas fa-music"></i>Music</button>
+      <button class="icon2" onclick="openParty(value)"><i class="cat_icon fas fa-glass-cheers"></i>Party</button>
+      <button class="icon3" onclick="openSport(value)"><i class="cat_icon fas fa-running"></i>Sport</button>
+      <button class="icon4" onclick="openArt(value)"><i class="cat_icon fas fa-palette"></i>Art</button>
+      <button class="icon5" onclick="openGames(value)"><i class="cat_icon fas fa-gamepad"></i>Games</button>
+      <button class="icon6" onclick="openFood(value)"><i class="cat_icon fas fa-utensils"></i>Food</button>
+      <button class="icon7" onclick="openTechnology(value)"><i class="cat_icon fas fa-lightbulb"></i>Technology</button>
+      <button class="icon8" onclick="openCulture(value)"><i class="cat_icon fas fa-theater-masks"></i>Culture</button>
+      <button class="icon9" onclick="openEducation(value)"><i
+          class="cat_icon fas fa-graduation-cap"></i>Education</button>
+      <button class="icon10" onclick="openLiterature(value)"><i class="cat_icon fas fa-book"></i>Literature</button>
+      <button class="icon11" onclick="openShopping(value)"><i
+          class="cat_icon fas fa-shopping-cart"></i>Shopping</button>
+      <button class="icon12" onclick="openSightseeing(value)"><i
+          class="cat_icon fas fa-archway"></i>Sightseeing</button>
+      <button class="icon13" onclick="openMovies(value)"><i class="cat_icon fas fa-video"></i>Movies</button>
+      <button class="icon14" onclick="openEnvironment(value)"><i
+          class="cat_icon fas fa-seedling"></i>Environment</button>
+    </div>
+  </section>
+
+
+
+  <!------------------- login page ---------------->
+  <section id="login" class="page">
+    <header class="topbar">
+    </header>
+    <!-------- firebase auth container ------>
+    <img id="logo" alt="Logo" class="logo" src="img/ourlogo.png">
+    <section id="firebaseui-auth-container"></section>
+  </section>
+
+
+
+  <!----------------------- CALENDAR PAGE --------------------->
+
+  <!----------------------- CALENDAR PAGE --------------------->
+
+  <section id="calendar" class="page">
+    <div class="search_heading">
+      <h2>Calendar</h2>
+    </div>
+    <div id="calendar-header-container"></i>
+    </div>
+    <div id="calendar-big-container">
+      <p class="calendar-day">31</p>
+      <p class="calendar-day">1</p>
+      <p class="calendar-day">2</p>
+      <p class="calendar-day">3</p>
+      <p class="calendar-day">4</p>
+      <p class="calendar-day">5</p>
+      <p class="calendar-day">6</p>
+      <p class="calendar-day">7</p>
+      <p class="calendar-day">8</p>
+      <p class="calendar-day">9</p>
+      <p class="calendar-day">10</p>
+      <p class="calendar-day">11</p>
+      <p class="calendar-day">12</p>
+      <p class="calendar-day">13</p>
+      <p class="calendar-day">14</p>
+      <p class="calendar-day">15</p>
+      <p class="calendar-day">16</p>
+      <p class="calendar-day">17</p>
+      <p class="calendar-day">18</p>
+      <p class="calendar-day">19</p>
+      <p class="calendar-day">20</p>
+      <p class="calendar-day">21</p>
+      <p class="calendar-day">22</p>
+      <p class="calendar-day">23</p>
+      <p class="calendar-day">24</p>
+      <p class="calendar-day">25</p>
+      <p class="calendar-day">26</p>
+      <p class="calendar-day">27</p>
+      <p class="calendar-day">28</p>
+      <p class="calendar-day">29</p>
+      <p class="calendar-day">30</p>
+    </div>
+    <div id="calendar-container"></div>
+  </section>
+
+
+  <!-------------------- TICKETS PAGE ---------------------->
+  <section id="tickets" class="page">
+
+    <!-- SVG FOR TICKET-->
+    <div class="tickets-container" id="tickets-container">
+
+    </div>
+    <!-- <button type="button" name="button" onclick="showMe()" class="ticket-events">Does it work?</button> -->
+  </section>
+  <!-------------------- SELECT SPECIFIC EVENT PAGE ---------------------->
+  <section id="select-event" class="page">
+
+
+  </section>
+
+  <!---------------- update event ---------------------->
+  <div id="update-event" class="page">
+    <div class="create_div">
+      <button onclick="closeIconUpdate()" class="close_icon"><i class="fas fa-times"></i></button>
+      <h1 class="create_header">UPDATE EVENT</h1>
+    </div>
+    <form id="updateEvent">
+      <input type="text" id="updatename" placeholder="CHANGE NAME">
+
+      <input type="text" id="updatelocation" placeholder="change ADDRESS">
+      <input type="date" id="updatedate">
+      <div class="price_free">
+        <div class="create_div3"><input type="number" id="updateprice" placeholder="change PRICE">
+          <p class="create_price">kr</p>
+        </div>
+        <div class="create_div3 div4">
+          <p class="create_free">FREE</p><input type="checkbox" id="updatefree">
+        </div>
+      </div>
+      <input type="text" id="updatedescription" placeholder="change the description">
+
+      <button type="submit" name="button" class="create_button" onclick="updateEvent()">Update Event</button>
+    </form>
+  </div>
+
+  <!------------------ USER PROFILE PAGE --------------------->
+  <section id="userprofile" class="page">
+    <!-- user container  -->
+    <div id="profile-container">
+      <div class="icon_settings"><button class="set_icon" onclick="openSettings()"><i class="fas fa-cog"></i></button>
+      </div>
+
+      <div class="profile_header">
+        <div id="user-photo"></i></div>
+        <div class="followers-container">
+          <h2 class="follow_number">13</h2>
+          <div id="followers"></div>
+          <h2 class=followers>followers</h2>
+        </div>
+        <div class="following-container">
+          <div id="following"></div>
+          <h2 class="follow_number">6</h2>
+          <h2 class=followers>followers</h2>
+        </div>
+      </div>
+      <div class="user_description">
+        <div class="user_name">
+          <div id="user-name"></div>
+          <button class="open_update" onclick="openUpdateUser()"><i class="fas fa-pen"></i></button>
+        </div>
+      </div>
+
+      <div id="update-user-form" class="page">
+        <div class="create_div">
+          <button class="back_button" onclick="closeSettings()"><i class="fas fa-chevron-left"></i></button>
+          <h1 class="create_header">EDIT profile</h1>
+        </div>
+        <div id="user-photo-update"></i></div>
+        <form id="updateUser">
+          <input type="file" id="profileimg" name="img" accept="image/*"
+            onchange="previewProfileImage(this.files[0], 'imagePreview')">
+          <img id="previewProfileImage" class="image-preview">
+          <input type="text" id="username" placeholder="full NAME">
+          <input type="text" id="useremail" placeholder="email">
+          <input type="text" id="password" placeholder="password">
+          <button type="submit" name="button" class="create_button" onclick="updateUser()">save changes</button>
+        </form>
+      </div>
+
+
+
+      <section id="settings" class="page">
+        <div class="create_div">
+          <button class="back_button" onclick="closeSettings()"><i class="fas fa-chevron-left"></i></button>
+          <h1 class="create_header">SETTINGS</h1>
+        </div>
+        <div class="button_div">
+          <div>
+            <button class="settButton" onclick="">PRIVACY<span><i class="fas fa-chevron-right"></i></span></button>
+            <button class="settButton" onclick="">Notifications<span><i
+                  class="fas fa-chevron-right"></i></span></button>
+            <button class="settButton" onclick="">payment<span><i class="fas fa-chevron-right"></i></span></button>
+            <button class="settButton" onclick="">edit chosen categories<span><i
+                  class="fas fa-chevron-right"></i></span></button>
+          </div>
+          <button type="button" name="button" class="log_out" onclick="logout()">LOG OUT</button>
+        </div>
+      </section>
+    </div>
+
+
+
+    <!----------------CREATE AN EVENT PAGE ---------------------->
+    <!-- create an event button -->
+
+    <button type="button" name="button" id="openFormButton" onclick="openForm()">CREATE AN EVENT</button>
+
+    <div id="create" class="page">
+      <div class="create_div">
+        <button onclick="closeIcon()" class="close_icon"><i class="fas fa-times"></i></button>
+        <h1 class="create_header">CREATE AN EVENT</h1>
+      </div>
+      <form id="myForm">
+        <input type="text" id="nameevent" placeholder="NAME OF THE EVENT" required>
+        <div class="create_div2">
+          <select id="categories" name="categories">
+            <option value="hidden" class=categ">CHOOSE CATEGORY</option>
+            <option value="music" class="categ">Music</option>
+            <option value="party" class="categ">Party</option>
+            <option value="sport" class="categ">Sport</option>
+            <option value="art" class="categ">Art</option>
+            <option value="games" class="categ">Games</option>
+            <option value="food" class="categ">Food</option>
+            <option value="technology" class="categ">Technology</option>
+            <option value="culture" class="categ">Culture</option>
+            <option value="education" class="categ">Education</option>
+            <option value="literature" class="categ">Literature</option>
+            <option value="shopping" class="categ">Shopping</option>
+            <option value="sightseeing" class="categ">Sightseeing</option>
+            <option value="movies" class="categ">Movies</option>
+            <option value="environment" class="categ">Environment</option>
+          </select>
+        </div>
+        <input type="text" id="location" placeholder="ADDRESS" required>
+        <input type="date" id="date" required>
+        <div class="price_free">
+          <div class="create_div3"><input type="number" id="price" placeholder="PRICE" required>
+            <p class="create_price">kr</p>
+          </div>
+          <div class="create_div3 div4">
+            <p class="create_free">FREE</p><input type="checkbox" id="free" required>
+          </div>
+        </div>
+        <input type="text" id="description" placeholder="Write the description" required>
+        <input type="file" id="img" accept="image/*" onchange="previewImage(this.files[0], 'imagePreview')">
+        <img id="imagePreview" alt="Image Preview" class="image-preview">
+        <button type="submit" name="button" class="create_button" onclick="createAnEvent()">Add Event</button>
+      </form>
+    </div>
+    <div id="see-my-event" class="page"></div>
+
+
+    <!---------------- OWN EVENTS SECTION ---------------------->
+    <div id="my-events-section">
+      <nav class="nav1">
+        <button class="nav-item1" active-color="black" onclick="hostedEvents(value)">hosting</button>
+        <button class="nav-item1" active-color="black" onclick="attendingEvents()">attending</button>
+        <span class="nav-indicator"></span>
+      </nav>
+      <div id="my-events-container" class="grid-container">
+
+      </div>
+
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- loader  -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+  <!-- Firebase App SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-firestore.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <!----- SPA functionality ----->
+  <script src="js/spa.js"></script>
+  <!----- firebase config js file ----->
+  <script src="js/firebase_config.js"></script>
+  <!----- main js file ----->
+  <script src="js/login.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/underline.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/location.js"></script>
+  <script src="js/calendar.js"></script>
+
+  <script src="js/preferences.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js"></script>
+
+</body>
+
+</html>
