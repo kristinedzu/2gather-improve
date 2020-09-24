@@ -1563,18 +1563,3 @@ width: 70%;
   /* float: left; */
 }
 
-
-.skip {
-  text-align: center;
-  padding: 6px 15px;
-  width: 100%;
-  max-width: 220px;
-  border: 2px solid black;
-  background-color: white;
-  color: black;
-  font-size: 1em;
-  font-family: rift,sans-serif;
-  font-weight: 700;
-  font-style: normal;
-  margin-top: 24px;
-}
