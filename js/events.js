@@ -198,7 +198,7 @@ function createAnEvent() {
     let freeInput = document.querySelector('#free');
     let categoriesInput = document.querySelector('#categories');
     let dateInput = document.querySelector('#date');
-    let locationInput = document.querySelector('#location');
+    let placeInput = document.querySelector('#location');
     let user = _currentUser;
 
     let newEvent = {
@@ -209,7 +209,9 @@ function createAnEvent() {
         price: freeInput.value = "FREE",
         category: categoriesInput.value,
         date: dateInput.value,
-        place: locationInput.value,
+        place: placeInput.value,
+        friends: "",
+        location: "",
         organiser: user.displayName
     };
     _eventRef.add(newEvent);
